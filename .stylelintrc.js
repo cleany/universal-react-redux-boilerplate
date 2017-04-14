@@ -224,8 +224,6 @@ module.exports = {
     'block-closing-brace-space-before': 'always-single-line',
     // disallow empty blocks
     'block-no-empty': true,
-    // disallow single-line blocks
-    'block-no-single-line': true,
     // require a newline after the opening brace of blocks
     'block-opening-brace-newline-after': 'always',
     // require a newline or disallow whitespace before the opening brace of blocks
