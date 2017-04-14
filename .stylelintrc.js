@@ -91,7 +91,7 @@ module.exports = {
     // http://stylelint.io/user-guide/rules/#time
 
     // disallow animation and transition less than or equal to 100ms
-    'time-no-imperceptible': true,
+    'time-min-milliseconds': 100,
 
     // Unit
     // http://stylelint.io/user-guide/rules/#unit
