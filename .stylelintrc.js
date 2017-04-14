@@ -1,6 +1,7 @@
 module.exports = {
   plugins: [
-    "stylelint-suitcss"
+    "stylelint-suitcss",
+    "stylelint-no-browser-hacks/lib"
   ],
   rules: {
 
@@ -407,8 +408,6 @@ module.exports = {
     'max-line-length': null,
     // limit the depth of nesting
     'max-nesting-depth': 2,
-    // disallow browser hacks that are irrelevant to the browsers you are targeting
-    'no-browser-hacks': true,
     // disallow selectors of lower specificity from coming after overriding selectors of higher specificity
     'no-descending-specificity': null,
     // disallow duplicate selectors
@@ -438,6 +437,12 @@ module.exports = {
     // disallow standard properties inside :root rules
     "suitcss/root-no-standard-properties": true,
     // disallow the composition of :root in selectors
-    "suitcss/selector-root-no-composition": true
+    "suitcss/selector-root-no-composition": true,
+
+    // No browser hacks plugin
+    //https://github.com/Slamdunk/stylelint-no-browser-hacks
+
+    // disallow browser hacks that are irrelevant to the browsers you are targeting
+    "plugin/no-browser-hacks": true
   }
 }
