@@ -317,10 +317,8 @@ module.exports = {
     // Rule
     // http://stylelint.io/user-guide/rules/#rule
 
-    // require or disallow an empty line before nested rules
-    'rule-nested-empty-line-before': 'always',
-    // require or disallow an empty line before non-nested rules
-    'rule-non-nested-empty-line-before': 'always',
+    // require or disallow an empty line before rules
+    'rule-empty-line-before': 'always',
 
     // Media Feature
     // http://stylelint.io/user-guide/rules/#media-feature
