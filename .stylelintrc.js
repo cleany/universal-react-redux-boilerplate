@@ -1,4 +1,7 @@
 module.exports = {
+  plugins: [
+    "stylelint-suitcss"
+  ],
   rules: {
 
     // Color
@@ -292,8 +295,6 @@ module.exports = {
     'selector-pseudo-element-colon-notation': 'double',
     // disallow unknown pseudo-element selectors
     'selector-pseudo-element-no-unknown': true,
-    // disallow the composition of :root in selectors
-    'selector-root-no-composition': true,
     // specify lowercase or uppercase for type selector
     'selector-type-case': 'lower',
     // disallow unknown type selectors
@@ -312,12 +313,6 @@ module.exports = {
     'selector-list-comma-space-after': 'always-single-line',
     // require a single space or disallow whitespace before the commas of selector lists
     'selector-list-comma-space-before': 'never',
-
-    // Root Rule
-    // http://stylelint.io/user-guide/rules/#root-rule
-
-    // disallow standard properties inside :root rules
-    'root-no-standard-properties': true,
 
     // Rule
     // http://stylelint.io/user-guide/rules/#rule
@@ -437,6 +432,16 @@ module.exports = {
     // disallow animation names that do not correspond to a @keyframes declaration
     'no-unknown-animations': true,
     // disallow features that are unsupported by the browsers that you are targeting
-    'no-unsupported-browser-features': null
+    'no-unsupported-browser-features': null,
+
+    // Suitcss plugin
+    //https://github.com/suitcss/stylelint-suitcss
+
+    // disallow custom properties outside of :root rules
+    "suitcss/custom-property-no-outside-root": true,
+    // disallow standard properties inside :root rules
+    "suitcss/root-no-standard-properties": true,
+    // disallow the composition of :root in selectors
+    "suitcss/selector-root-no-composition": true
   }
 }
