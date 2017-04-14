@@ -6,6 +6,9 @@
 
 .*/node_modules/editions/.*
 .*/node_modules/fbjs/.*
+.*/node_modules/stylelint/.*
+.*/node_modules/stylelint-suitcss/.*
+.*/node_modules/stylelint-no-brower-hack/.*
 
 [libs]
 interfaces
