@@ -1,7 +1,10 @@
+/* eslint "import/no-extraneous-dependencies": [ off ] */
+const autoprefixer = require('autoprefixer');
+
 module.exports = {
   plugins: [
-    require('autoprefixer')({
-      browsers: ['last 2 versions']
-    })
-  ]
-}
+    autoprefixer({
+      browsers: ['last 2 versions'],
+    }),
+  ],
+};

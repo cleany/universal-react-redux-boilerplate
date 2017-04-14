@@ -1,5 +1,5 @@
 module.exports = {
-  extends: "airbnb",
+  extends: 'airbnb',
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 7,
@@ -14,17 +14,19 @@ module.exports = {
     'flowtype'
   ],
   env: {
-    browser: true,
     node: true,
     mocha: true,
   },
   globals: {
-    __DEV__: true,
-    __PROD__: true,
-    __SERVER__: true,
-    __CLIENT__: true
+    DEV: true,
+    PROD: true,
+    SERVER: true,
+    CLIENT: true
   },
   rules: {
+    // in order to activate module hot reloader, global require should be disabled
+    'global-require': 0,
+
     // eslint-plugin-flowtype
     // https://github.com/gajus/eslint-plugin-flowtype#configuration
 

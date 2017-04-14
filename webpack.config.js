@@ -1,50 +1,51 @@
-'use strict' // eslint-disable-line strict
 
-const path = require('path')
-const webpack = require('webpack')
+ // eslint-disable-line strict
 
-const WebpackToolsPlugin = require('webpack-isomorphic-tools/plugin')
-const webpackToolsConfig = require('./webpack.isomorphic.tools')
+const path = require('path');
+const webpack = require('webpack');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const WebpackToolsPlugin = require('webpack-isomorphic-tools/plugin');
+const webpackToolsConfig = require('./webpack.isomorphic.tools');
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Globals
-const NODE_ENV = process.env.NODE_ENV || 'development'
-const __DEV__ = NODE_ENV !== 'production'
-const __PROD__ = NODE_ENV === 'production'
-const __SERVER__ = false
-const __CLIENT__ = true
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const DEV = NODE_ENV !== 'production';
+const PROD = NODE_ENV === 'production';
+const SERVER = false;
+const CLIENT = true;
 
-let config
+let config;
 
-if (__DEV__) {
+if (DEV) {
   config = {
     context: path.join(__dirname, 'src'),
     entry: {
       app: [
         'webpack-hot-middleware/client',
         'react-hot-loader/patch',
-        './client.js'
-      ]
+        './client.jsx',
+      ],
     },
     resolve: {
-      extensions: ['.js']
+      extensions: ['.js', '.jsx'],
     },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: 'app.js',
-      publicPath: '/'
+      publicPath: '/',
     },
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.jsx?$/,
           loader: 'babel-loader',
           query: {
             presets: ['react', ['es2015', { modules: false }], 'stage-0'],
-            plugins: ['react-hot-loader/babel']
+            plugins: ['react-hot-loader/babel'],
           },
-          include: path.join(__dirname, 'src')
+          include: path.join(__dirname, 'src'),
         },
         {
           test: /\.scss$/,
@@ -52,50 +53,50 @@ if (__DEV__) {
             'style-loader',
             'css-loader?modules&localIdentName=[local]__[hash:base64:4]&importLoaders=1&sourceMap',
             'postcss-loader',
-            'sass-loader?sourceMap'
-          ]
-        }
-      ]
+            'sass-loader?sourceMap',
+          ],
+        },
+      ],
     },
     plugins: [
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
       new webpack.DefinePlugin({
-        __DEV__,
-        __PROD__,
-        __SERVER__,
-        __CLIENT__
+        DEV,
+        PROD,
+        SERVER,
+        CLIENT,
       }),
-      new WebpackToolsPlugin(webpackToolsConfig).development(__DEV__)
+      new WebpackToolsPlugin(webpackToolsConfig).development(DEV),
     ],
-    devtool: 'inline-source-map'
-  }
+    devtool: 'inline-source-map',
+  };
 }
 
-if (__PROD__) {
+if (PROD) {
   config = {
     context: path.join(__dirname, 'src'),
     entry: {
-      app: './client.js'
+      app: './client.jsx',
     },
     resolve: {
-      extensions: ['.js']
+      extensions: ['.js', '.jsx'],
     },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: 'app.[chunkhash].js',
-      publicPath: '/'
+      publicPath: '/',
     },
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.jsx?$/,
           loader: 'babel-loader',
           query: {
-            presets: ['react', ['es2015', { modules: false }], 'stage-0']
+            presets: ['react', ['es2015', { modules: false }], 'stage-0'],
           },
-          include: path.join(__dirname, 'src')
+          include: path.join(__dirname, 'src'),
         },
         {
           test: /\.scss$/,
@@ -104,31 +105,31 @@ if (__PROD__) {
             use: [
               'css-loader?modules&localIdentName=[hash:base64:4]&importLoaders=1&sourceMap',
               'postcss-loader',
-              'sass-loader?sourceMap'
-            ]
-          })
-        }
-      ]
+              'sass-loader?sourceMap',
+            ],
+          }),
+        },
+      ],
     },
     plugins: [
       new ExtractTextPlugin('app.[contenthash:20].css'),
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({
         compressor: {
-          warnings: false
-        }
+          warnings: false,
+        },
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production'),
-        __DEV__,
-        __PROD__,
-        __SERVER__,
-        __CLIENT__
+        DEV,
+        PROD,
+        SERVER,
+        CLIENT,
       }),
-      new WebpackToolsPlugin(webpackToolsConfig).development(__DEV__)
+      new WebpackToolsPlugin(webpackToolsConfig).development(DEV),
     ],
-    devtool: 'source-map'
-  }
+    devtool: 'source-map',
+  };
 }
 
-module.exports = config
+module.exports = config;

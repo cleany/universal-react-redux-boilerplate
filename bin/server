@@ -4,12 +4,12 @@ const path = require('path')
 
 // Globals
 const NODE_ENV = process.env.NODE_ENV || 'development'
-global.__DEV__ = NODE_ENV !== 'production'
-global.__PROD__ = NODE_ENV === 'production'
-global.__SERVER__ = true
-global.__CLIENT__ = false
+global.DEV = NODE_ENV !== 'production'
+global.PROD = NODE_ENV === 'production'
+global.SERVER = true
+global.CLIENT = false
 
-if (__DEV__) {
+if (DEV) {
   // Bootstrap babel-register
   require('babel-register')
 
@@ -17,7 +17,7 @@ if (__DEV__) {
   require('../webpack.server')
 }
 
-const basePath = path.resolve(__dirname, __DEV__ ? '../src' : '../lib')
+const basePath = path.resolve(__dirname, DEV ? '../src' : '../lib')
 const WebpackTools = require('webpack-isomorphic-tools')
 const webpackToolsConfig = require('../webpack.isomorphic.tools')
 
