@@ -192,8 +192,6 @@ module.exports = {
 
     // disallow duplicate properties within declaration blocks
     'declaration-block-no-duplicate-properties': true,
-    // disallow property values that are ignored due to another property value in the same rule
-    'declaration-block-no-ignored-properties': true,
     // disallow shorthand properties that override related longhand properties within declaration blocks
     'declaration-block-no-shorthand-property-overrides': true,
     // specify the order of properties within declaration blocks
